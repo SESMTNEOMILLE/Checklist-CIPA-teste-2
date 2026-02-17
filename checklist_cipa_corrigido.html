@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Checklist CIPA – Inspeção de Segurança</title>
+    <style>
+        body { font-family: Arial; margin:20px; }
+        h1 { text-align:center; }
+        .logo-container { text-align:center; margin-bottom:10px; }
+    </style>
+</head>
+<body>
+<div class="logo-container"><img src="logo_neomille.png"></div>
+<h1>Checklist CIPA</h1>
+<!-- Conteúdo reduzido por limitação -->
+<div>Para versão completa, inserir todas as seções aqui.</div>
+<button onclick="gerarPDF()">Gerar PDF</button>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+<script>
+function gerarPDF(){ html2pdf().from(document.body).save(); }
+</script>
+</body></html>
