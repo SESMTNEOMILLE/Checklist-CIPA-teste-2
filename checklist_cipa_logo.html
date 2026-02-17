@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Checklist CIPA – Inspeção de Segurança</title>
+
+    <!-- Biblioteca para gerar PDF automaticamente -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 5px;
+        }
+        .subtitulo {
+            text-align: center;
+            font-size: 12px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .logo-container {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .logo-container img {
+            max-width: 280px;
+            height: auto;
+        }
+        .cabecalho-form {
+            background: #ffffff;
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            margin-bottom: 15px;
+        }
+        .campo-inline {
+            display: inline-block;
+            margin-right: 30px;
+            margin-bottom: 5px;
+        }
+        .campo-inline label {
+            font-weight: bold;
+            font-size: 13px;
+        }
+        .campo-inline input {
+            border: 1px solid #999;
+            padding: 3px 5px;
+            min-width: 150px;
+        }
+        .secao {
+            margin-top: 20px;
+            background: #ffffff;
+            border: 1px solid #ccc;
+            padding: 10px 15px;
+        }
+        .secao-titulo {
+            background-color: #006837;
+            color: #ffffff;
+            padding: 6px 10px;
+            font-weight: bold;
+            font-size: 14px;
+            margin: -10px -15px 10px -15px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 4px 6px;
+            vertical-align: middle;
+        }
+        th {
+            background-color: #e0e0e0;
+            text-align: center;
+        }
+        td.pergunta {
+            text-align: left;
+        }
+        td.opcao {
+            text-align: center;
+            width: 35px;
+        }
+        .botoes {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .botoes button {
+            margin: 5px;
+            padding: 8px 16px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        @media print {
+            body { background-color: #ffffff; }
+            .botoes { display: none; }
+        }
+    </style>
+
+    <script>
+        function gerarPDF() {
+            const nome = document.getElementById("nome").value || "inspetor";
+            const data = document.getElementById("data").value || "data";
+
+            const opt = {
+                margin: 5,
+                filename: 'checklist_cipa_' + nome + '_' + data + '.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            const elemento = document.body;
+            html2pdf().from(elemento).set(opt).save();
+        }
+    </script>
+</head>
+<body>
+
+<div class="logo-container">
+    <!-- IMPORTANTE: coloque o arquivo do logo (por exemplo logo_neomille.png) na mesma pasta deste HTML -->
+    <img src="logo_neomille.png" alt="Neomille - Uma empresa CerradinhoBio">
+</div>
+
+<h1>Checklist CIPA</h1>
+<div class="subtitulo">Inspeção de Segurança – Uso dos membros da CIPA</div>
+
+<form>
+    <!-- Cabeçalho com Nome, Matrícula, Data, Setor -->
+    <div class="cabecalho-form">
+        <div class="campo-inline">
+            <label for="nome">Nome:</label><br>
+            <input type="text" id="nome" name="nome">
+        </div>
+        <div class="campo-inline">
+            <label for="matricula">Matrícula:</label><br>
+            <input type="text" id="matricula" name="matricula">
+        </div>
+        <div class="campo-inline">
+            <label for="data">Data:</label><br>
+            <input type="date" id="data" name="data">
+        </div>
+        <div class="campo-inline">
+            <label for="setor">Setor / Área:</label><br>
+            <input type="text" id="setor" name="setor">
+        </div>
+    </div>
+
+    <!-- 1. Procedimentos -->
+    <div class="secao">
+        <div class="secao-titulo">1. Procedimentos</div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:30px;">#</th>
+                    <th>Pergunta</th>
+                    <th style="width:35px;">S</th>
+                    <th style="width:35px;">N</th>
+                    <th style="width:35px;">N.A</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td class="pergunta">APR / PT disponível para atividades que não possuem IT ou Procedimento?</td>
+                    <td class="opcao"><input type="radio" name="p1" value="S"></td>
+                    <td class="opcao"><input type="radio" name="p1" value="N"></td>
+                    <td class="opcao"><input type="radio" name="p1" value="NA"></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td class="pergunta">PT preenchida corretamente / contempla todas assinaturas?</td>
+                    <td class="opcao"><input type="radio" name="p2" value="S"></td>
+                    <td class="opcao"><input type="radio" name="p2" value="N"></td>
+                    <td class="opcao"><input type="radio" name="p2" value="NA"></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td class="pergunta">Possui integração / treinamento específico para a atividade?</td>
+                    <td class="opcao"><input type="radio" name="p3" value="S"></td>
+                    <td class="opcao"><input type="radio" name="p3" value="N"></td>
+                    <td class="opcao"><input type="radio" name="p3" value="NA"></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td class="pergunta">O crachá está com a validade correta?</td>
+                    <td class="opcao"><input type="radio" name="p4" value="S"></td>
+                    <td class="opcao"><input type="radio" name="p4" value="N"></td>
+                    <td class="opcao"><input type="radio" name="p4" value="NA"></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td class="pergunta">Cumprindo a APR / PT?</td>
+                    <td class="opcao"><input type="radio" name="p5" value="S"></td>
+                    <td class="opcao"><input type="radio" name="p5" value="N"></td>
+                    <td class="opcao"><input type="radio" name="p5" value="NA"></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td class="pergunta">Outros.</td>
+                    <td class="opcao"><input type="radio" name="p6" value="S"></td>
+                    <td class="opcao"><input type="radio" name="p6" value="N"></td>
+                    <td class="opcao"><input type="radio" name="p6" value="NA"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 2. Altura -->
+    <div class="secao">
+        <div class="secao-titulo">2. Altura</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Pergunta</th>
+                    <th>S</th>
+                    <th>N</th>
+                    <th>N.A</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td class="pergunta">Escadas em conformidades?</td>
+                    <td class="opcao"><input type="radio" name="p7" value="S"></td>
+                    <td class="opcao"><input type="radio" name="p7" value="N"></td>
+                    <td class="opcao"><input type="radio" name="p7" value="NA"></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td class="pergunta">Andaimes em conformidades?</td>
+                    <td class="opcao"><input type="radio" name="p8" value="S"></td>
+                    <td class="opcao"><input type="radio" name="p8" value="N"></td>
+                    <td class="opcao"><input type="radio" name="p8" value="NA"></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td class="pergunta">Fatores climáticos adequados?</td>
+                    <td class="opcao"><input type="radio" name="p9" value="S"></td>
+                    <td class="opcao"><input type="radio" name="p9" value="N"></td>
+                    <td class="opcao"><input type="radio" name="p9" value="NA"></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td class="pergunta">Escadas marinheiro com restrição de acesso? Proteção ou corrente, alçapão?</td>
+                    <td class="opcao"><input type="radio" name="p10" value="S"></td>
+                    <td class="opcao"><input type="radio" name="p10" value="N"></td>
+                    <td class="opcao"><input type="radio" name="p10" value="NA"></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td class="pergunta">PTA em perfeita condição e inspecionada (feito check list)?</td>
+                    <td class="opcao"><input type="radio" name="p11" value="S"></td>
+                    <td class="opcao"><input type="radio" name="p11" value="N"></td>
+                    <td class="opcao"><input type="radio" name="p11" value="NA"></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td class="pergunta">Outros.</td>
+                    <td class="opcao"><input type="radio" name="p12" value="S"></td>
+                    <td class="opcao"><input type="radio" name="p12" value="N"></td>
+                    <td class="opcao"><input type="radio" name="p12" value="NA"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 3. Movimentação de Material – Homem x Máquina -->
+    <div class="secao">
+        <div class="secao-titulo">3. Movimentação de Material – Homem x Máquina</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Pergunta</th>
+                    <th>S</th>
+                    <th>N</th>
+                    <th>N.A</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td class="pergunta">Máquinas / guindauto / ponte rolante / empilhadeira são inspecionados? Verificar selo de liberação?</td><td class="opcao"><input type="radio" name="p13" value="S"></td><td class="opcao"><input type="radio" name="p13" value="N"></td><td class="opcao"><input type="radio" name="p13" value="NA"></td></tr>
+                <tr><td>2</td><td class="pergunta">Acessórios em boas condições (controle / ganchos / cintas / cabos / etc)?</td><td class="opcao"><input type="radio" name="p14" value="S"></td><td class="opcao"><input type="radio" name="p14" value="N"></td><td class="opcao"><input type="radio" name="p14" value="NA"></td></tr>
+                <tr><td>3</td><td class="pergunta">Alarmes sonoros em perfeita condição (maneco / caçamba / buzina / sinal de ré / etc)?</td><td class="opcao"><input type="radio" name="p15" value="S"></td><td class="opcao"><input type="radio" name="p15" value="N"></td><td class="opcao"><input type="radio" name="p15" value="NA"></td></tr>
+                <tr><td>4</td><td class="pergunta">Sinalização visual em perfeita condição (farol, setas, giroflex / etc)?</td><td class="opcao"><input type="radio" name="p16" value="S"></td><td class="opcao"><input type="radio" name="p16" value="N"></td><td class="opcao"><input type="radio" name="p16" value="NA"></td></tr>
+                <tr><td>5</td><td class="pergunta">Sistema hidráulico sem vazamento?</td><td class="opcao"><input type="radio" name="p17" value="S"></td><td class="opcao"><input type="radio" name="p17" value="N"></td><td class="opcao"><input type="radio" name="p17" value="NA"></td></tr>
+                <tr><td>6</td><td class="pergunta">Estacionado em local seguro com calço?</td><td class="opcao"><input type="radio" name="p18" value="S"></td><td class="opcao"><input type="radio" name="p18" value="N"></td><td class="opcao"><input type="radio" name="p18" value="NA"></td></tr>
+                <tr><td>7</td><td class="pergunta">Estão em perfeitas condições pneus, retrovisores, cinto de segurança, etc?</td><td class="opcao"><input type="radio" name="p19" value="S"></td><td class="opcao"><input type="radio" name="p19" value="N"></td><td class="opcao"><input type="radio" name="p19" value="NA"></td></tr>
+                <tr><td>8</td><td class="pergunta">Capacidade de carga visível no equipamento e adequada para a operação?</td><td class="opcao"><input type="radio" name="p20" value="S"></td><td class="opcao"><input type="radio" name="p20" value="N"></td><td class="opcao"><input type="radio" name="p20" value="NA"></td></tr>
+                <tr><td>9</td><td class="pergunta">O gancho possui trava? Cintas têm identificação de peso?</td><td class="opcao"><input type="radio" name="p21" value="S"></td><td class="opcao"><input type="radio" name="p21" value="N"></td><td class="opcao"><input type="radio" name="p21" value="NA"></td></tr>
+                <tr><td>10</td><td class="pergunta">Outros.</td><td class="opcao"><input type="radio" name="p22" value="S"></td><td class="opcao"><input type="radio" name="p22" value="N"></td><td class="opcao"><input type="radio" name="p22" value="NA"></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 4. Direção Segura -->
+    <div class="secao">
+        <div class="secao-titulo">4. Direção Segura</div>
+        <table>
+            <thead>
+                <tr><th>#</th><th>Pergunta</th><th>S</th><th>N</th><th>N.A</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td class="pergunta">Está habilitado, autorizado e treinado?</td><td class="opcao"><input type="radio" name="p23" value="S"></td><td class="opcao"><input type="radio" name="p23" value="N"></td><td class="opcao"><input type="radio" name="p23" value="NA"></td></tr>
+                <tr><td>2</td><td class="pergunta">Utilizando cinto de segurança?</td><td class="opcao"><input type="radio" name="p24" value="S"></td><td class="opcao"><input type="radio" name="p24" value="N"></td><td class="opcao"><input type="radio" name="p24" value="NA"></td></tr>
+                <tr><td>3</td><td class="pergunta">Os faróis estão acesos?</td><td class="opcao"><input type="radio" name="p25" value="S"></td><td class="opcao"><input type="radio" name="p25" value="N"></td><td class="opcao"><input type="radio" name="p25" value="NA"></td></tr>
+                <tr><td>4</td><td class="pergunta">Velocidade compatível com o local?</td><td class="opcao"><input type="radio" name="p26" value="S"></td><td class="opcao"><input type="radio" name="p26" value="N"></td><td class="opcao"><input type="radio" name="p26" value="NA"></td></tr>
+                <tr><td>5</td><td class="pergunta">Fez todas indicações / sinalizações necessárias (seta, buzina)?</td><td class="opcao"><input type="radio" name="p27" value="S"></td><td class="opcao"><input type="radio" name="p27" value="N"></td><td class="opcao"><input type="radio" name="p27" value="NA"></td></tr>
+                <tr><td>6</td><td class="pergunta">Outros.</td><td class="opcao"><input type="radio" name="p28" value="S"></td><td class="opcao"><input type="radio" name="p28" value="N"></td><td class="opcao"><input type="radio" name="p28" value="NA"></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 5. Organização e Limpeza -->
+    <div class="secao">
+        <div class="secao-titulo">5. Organização e Limpeza</div>
+        <table>
+            <thead>
+                <tr><th>#</th><th>Pergunta</th><th>S</th><th>N</th><th>N.A</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td class="pergunta">Área de circulação está desobstruída?</td><td class="opcao"><input type="radio" name="p29" value="S"></td><td class="opcao"><input type="radio" name="p29" value="N"></td><td class="opcao"><input type="radio" name="p29" value="NA"></td></tr>
+                <tr><td>2</td><td class="pergunta">Pisos, escadas fixas, paredes, coberturas e iluminação em bom estado?</td><td class="opcao"><input type="radio" name="p30" value="S"></td><td class="opcao"><input type="radio" name="p30" value="N"></td><td class="opcao"><input type="radio" name="p30" value="NA"></td></tr>
+                <tr><td>3</td><td class="pergunta">Canaletas, caixas de passagem, alçapões estão protegidos?</td><td class="opcao"><input type="radio" name="p31" value="S"></td><td class="opcao"><input type="radio" name="p31" value="N"></td><td class="opcao"><input type="radio" name="p31" value="NA"></td></tr>
+                <tr><td>4</td><td class="pergunta">Armazenamento de materiais de forma correta?</td><td class="opcao"><input type="radio" name="p32" value="S"></td><td class="opcao"><input type="radio" name="p32" value="N"></td><td class="opcao"><input type="radio" name="p32" value="NA"></td></tr>
+                <tr><td>5</td><td class="pergunta">Recipiente utilizado de forma correta?</td><td class="opcao"><input type="radio" name="p33" value="S"></td><td class="opcao"><input type="radio" name="p33" value="N"></td><td class="opcao"><input type="radio" name="p33" value="NA"></td></tr>
+                <tr><td>6</td><td class="pergunta">Isolamento e identificação da área de trabalho está ok?</td><td class="opcao"><input type="radio" name="p34" value="S"></td><td class="opcao"><input type="radio" name="p34" value="N"></td><td class="opcao"><input type="radio" name="p34" value="NA"></td></tr>
+                <tr><td>7</td><td class="pergunta">Outros.</td><td class="opcao"><input type="radio" name="p35" value="S"></td><td class="opcao"><input type="radio" name="p35" value="N"></td><td class="opcao"><input type="radio" name="p35" value="NA"></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 6. Equipamento de Proteção Individual (EPI) -->
+    <div class="secao">
+        <div class="secao-titulo">6. Equipamento de Proteção Individual (EPI)</div>
+        <table>
+            <thead>
+                <tr><th>#</th><th>Pergunta</th><th>S</th><th>N</th><th>N.A</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td class="pergunta">Utilizando EPIs obrigatórios?</td><td class="opcao"><input type="radio" name="p36" value="S"></td><td class="opcao"><input type="radio" name="p36" value="N"></td><td class="opcao"><input type="radio" name="p36" value="NA"></td></tr>
+                <tr><td>2</td><td class="pergunta">EPIs corretos conforme EPI x Atividade?</td><td class="opcao"><input type="radio" name="p37" value="S"></td><td class="opcao"><input type="radio" name="p37" value="N"></td><td class="opcao"><input type="radio" name="p37" value="NA"></td></tr>
+                <tr><td>3</td><td class="pergunta">EPIs conservados?</td><td class="opcao"><input type="radio" name="p38" value="S"></td><td class="opcao"><input type="radio" name="p38" value="N"></td><td class="opcao"><input type="radio" name="p38" value="NA"></td></tr>
+                <tr><td>4</td><td class="pergunta">Outros.</td><td class="opcao"><input type="radio" name="p39" value="S"></td><td class="opcao"><input type="radio" name="p39" value="N"></td><td class="opcao"><input type="radio" name="p39" value="NA"></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 7. Máquinas e Equipamentos -->
+    <div class="secao">
+        <div class="secao-titulo">7. Máquinas e Equipamentos</div>
+        <table>
+            <thead>
+                <tr><th>#</th><th>Pergunta</th><th>S</th><th>N</th><th>N.A</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td class="pergunta">As partes móveis estão protegidas?</td><td class="opcao"><input type="radio" name="p40" value="S"></td><td class="opcao"><input type="radio" name="p40" value="N"></td><td class="opcao"><input type="radio" name="p40" value="NA"></td></tr>
+                <tr><td>2</td><td class="pergunta">O equipamento possui dispositivo de emergência?</td><td class="opcao"><input type="radio" name="p41" value="S"></td><td class="opcao"><input type="radio" name="p41" value="N"></td><td class="opcao"><input type="radio" name="p41" value="NA"></td></tr>
+                <tr><td>3</td><td class="pergunta">As superfícies aquecidas possuem isolamento térmico?</td><td class="opcao"><input type="radio" name="p42" value="S"></td><td class="opcao"><input type="radio" name="p42" value="N"></td><td class="opcao"><input type="radio" name="p42" value="NA"></td></tr>
+                <tr><td>4</td><td class="pergunta">Os sistemas de descarga de vapor, água quente são direcionados de forma segura?</td><td class="opcao"><input type="radio" name="p43" value="S"></td><td class="opcao"><input type="radio" name="p43" value="N"></td><td class="opcao"><input type="radio" name="p43" value="NA"></td></tr>
+                <tr><td>5</td><td class="pergunta">Parafusos completos / padronizados nas flanges?</td><td class="opcao"><input type="radio" name="p44" value="S"></td><td class="opcao"><input type="radio" name="p44" value="N"></td><td class="opcao"><input type="radio" name="p44" value="NA"></td></tr>
+                <tr><td>6</td><td class="pergunta">Outros.</td><td class="opcao"><input type="radio" name="p45" value="S"></td><td class="opcao"><input type="radio" name="p45" value="N"></td><td class="opcao"><input type="radio" name="p45" value="NA"></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 8. Energia Perigosa -->
+    <div class="secao">
+        <div class="secao-titulo">8. Energia Perigosa</div>
+        <table>
+            <thead>
+                <tr><th>#</th><th>Pergunta</th><th>S</th><th>N</th><th>N.A</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td class="pergunta">Todas as fontes de energia foram desligadas, bloqueadas e aliviadas?</td><td class="opcao"><input type="radio" name="p46" value="S"></td><td class="opcao"><input type="radio" name="p46" value="N"></td><td class="opcao"><input type="radio" name="p46" value="NA"></td></tr>
+                <tr><td>2</td><td class="pergunta">Mapeadas todas as energias perigosas (elétrica, química, térmica, mecânica, hidráulica e pneumática)?</td><td class="opcao"><input type="radio" name="p47" value="S"></td><td class="opcao"><input type="radio" name="p47" value="N"></td><td class="opcao"><input type="radio" name="p47" value="NA"></td></tr>
+                <tr><td>3</td><td class="pergunta">Os funcionários estão cientes de retirar os cadeados após conclusão da atividade?</td><td class="opcao"><input type="radio" name="p48" value="S"></td><td class="opcao"><input type="radio" name="p48" value="N"></td><td class="opcao"><input type="radio" name="p48" value="NA"></td></tr>
+                <tr><td>4</td><td class="pergunta">Todos os envolvidos no bloqueio possuem cadeados e cartão de identificação?</td><td class="opcao"><input type="radio" name="p49" value="S"></td><td class="opcao"><input type="radio" name="p49" value="N"></td><td class="opcao"><input type="radio" name="p49" value="NA"></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 9. Serviço a Quente -->
+    <div class="secao">
+        <div class="secao-titulo">9. Serviço a Quente</div>
+        <table>
+            <thead>
+                <tr><th>#</th><th>Pergunta</th><th>S</th><th>N</th><th>N.A</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td class="pergunta">O conjunto oxi-corte está em boas condições?</td><td class="opcao"><input type="radio" name="p50" value="S"></td><td class="opcao"><input type="radio" name="p50" value="N"></td><td class="opcao"><input type="radio" name="p50" value="NA"></td></tr>
+                <tr><td>2</td><td class="pergunta">Máquina de solda e acessórios estão em boas condições?</td><td class="opcao"><input type="radio" name="p51" value="S"></td><td class="opcao"><input type="radio" name="p51" value="N"></td><td class="opcao"><input type="radio" name="p51" value="NA"></td></tr>
+                <tr><td>3</td><td class="pergunta">Lixadeiras em boas condições?</td><td class="opcao"><input type="radio" name="p52" value="S"></td><td class="opcao"><input type="radio" name="p52" value="N"></td><td class="opcao"><input type="radio" name="p52" value="NA"></td></tr>
+                <tr><td>4</td><td class="pergunta">Foi instalado tapumes ou barreiras físicas?</td><td class="opcao"><input type="radio" name="p53" value="S"></td><td class="opcao"><input type="radio" name="p53" value="N"></td><td class="opcao"><input type="radio" name="p53" value="NA"></td></tr>
+                <tr><td>5</td><td class="pergunta">Foi retirado materiais inflamáveis/combustíveis?</td><td class="opcao"><input type="radio" name="p54" value="S"></td><td class="opcao"><input type="radio" name="p54" value="N"></td><td class="opcao"><input type="radio" name="p54" value="NA"></td></tr>
+                <tr><td>6</td><td class="pergunta">Foi realizado avaliação de gases?</td><td class="opcao"><input type="radio" name="p55" value="S"></td><td class="opcao"><input type="radio" name="p55" value="N"></td><td class="opcao"><input type="radio" name="p55" value="NA"></td></tr>
+                <tr><td>7</td><td class="pergunta">Outros.</td><td class="opcao"><input type="radio" name="p56" value="S"></td><td class="opcao"><input type="radio" name="p56" value="N"></td><td class="opcao"><input type="radio" name="p56" value="NA"></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 10. Ferramentas -->
+    <div class="secao">
+        <div class="secao-titulo">10. Ferramentas (manuais, elétricas, pneumáticas, etc)</div>
+        <table>
+            <thead>
+                <tr><th>#</th><th>Pergunta</th><th>S</th><th>N</th><th>N.A</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td class="pergunta">Ferramentas em bom estado de conservação?</td><td class="opcao"><input type="radio" name="p57" value="S"></td><td class="opcao"><input type="radio" name="p57" value="N"></td><td class="opcao"><input type="radio" name="p57" value="NA"></td></tr>
+                <tr><td>2</td><td class="pergunta">Cabos em boas condições, sem emendas?</td><td class="opcao"><input type="radio" name="p58" value="S"></td><td class="opcao"><input type="radio" name="p58" value="N"></td><td class="opcao"><input type="radio" name="p58" value="NA"></td></tr>
+                <tr><td>3</td><td class="pergunta">Proteções em boas condições?</td><td class="opcao"><input type="radio" name="p59" value="S"></td><td class="opcao"><input type="radio" name="p59" value="N"></td><td class="opcao"><input type="radio" name="p59" value="NA"></td></tr>
+                <tr><td>4</td><td class="pergunta">Outros.</td><td class="opcao"><input type="radio" name="p60" value="S"></td><td class="opcao"><input type="radio" name="p60" value="N"></td><td class="opcao"><input type="radio" name="p60" value="NA"></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 11. Sinalização e Isolamento -->
+    <div class="secao">
+        <div class="secao-titulo">11. Sinalização e Isolamento</div>
+        <table>
+            <thead>
+                <tr><th>#</th><th>Pergunta</th><th>S</th><th>N</th><th>N.A</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td class="pergunta">Placas de sinalização estão em boas condições?</td><td class="opcao"><input type="radio" name="p61" value="S"></td><td class="opcao"><input type="radio" name="p61" value="N"></td><td class="opcao"><input type="radio" name="p61" value="NA"></td></tr>
+                <tr><td>2</td><td class="pergunta">Área de trabalho isolada?</td><td class="opcao"><input type="radio" name="p62" value="S"></td><td class="opcao"><input type="radio" name="p62" value="N"></td><td class="opcao"><input type="radio" name="p62" value="NA"></td></tr>
+                <tr><td>3</td><td class="pergunta">Isolamento adequado (tela tapume, corrente, cone, barreira física)?</td><td class="opcao"><input type="radio" name="p63" value="S"></td><td class="opcao"><input type="radio" name="p63" value="N"></td><td class="opcao"><input type="radio" name="p63" value="NA"></td></tr>
+                <tr><td>4</td><td class="pergunta">Outros.</td><td class="opcao"><input type="radio" name="p64" value="S"></td><td class="opcao"><input type="radio" name="p64" value="N"></td><td class="opcao"><input type="radio" name="p64" value="NA"></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 12. Espaço Confinado -->
+    <div class="secao">
+        <div class="secao-titulo">12. Espaço Confinado</div>
+        <table>
+            <thead>
+                <tr><th>#</th><th>Pergunta</th><th>S</th><th>N</th><th>N.A</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td class="pergunta">Área de acesso ao espaço confinado sinalizada?</td><td class="opcao"><input type="radio" name="p65" value="S"></td><td class="opcao"><input type="radio" name="p65" value="N"></td><td class="opcao"><input type="radio" name="p65" value="NA"></td></tr>
+                <tr><td>2</td><td class="pergunta">Iluminação artificial de 12V em corrente contínua?</td><td class="opcao"><input type="radio" name="p66" value="S"></td><td class="opcao"><input type="radio" name="p66" value="N"></td><td class="opcao"><input type="radio" name="p66" value="NA"></td></tr>
+                <tr><td>3</td><td class="pergunta">Realizado avaliação de gases?</td><td class="opcao"><input type="radio" name="p67" value="S"></td><td class="opcao"><input type="radio" name="p67" value="N"></td><td class="opcao"><input type="radio" name="p67" value="NA"></td></tr>
+                <tr><td>4</td><td class="pergunta">Realizado procedimentos ventilação e exaustão?</td><td class="opcao"><input type="radio" name="p68" value="S"></td><td class="opcao"><input type="radio" name="p68" value="N"></td><td class="opcao"><input type="radio" name="p68" value="NA"></td></tr>
+                <tr><td>5</td><td class="pergunta">Outros.</td><td class="opcao"><input type="radio" name="p69" value="S"></td><td class="opcao"><input type="radio" name="p69" value="N"></td><td class="opcao"><input type="radio" name="p69" value="NA"></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 13. Produtos Químicos -->
+    <div class="secao">
+        <div class="secao-titulo">13. Produtos Químicos</div>
+        <table>
+            <thead>
+                <tr><th>#</th><th>Pergunta</th><th>S</th><th>N</th><th>N.A</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td class="pergunta">Em caso de acidentes o local possui chuveiro de emergência e lava olhos?</td><td class="opcao"><input type="radio" name="p70" value="S"></td><td class="opcao"><input type="radio" name="p70" value="N"></td><td class="opcao"><input type="radio" name="p70" value="NA"></td></tr>
+                <tr><td>2</td><td class="pergunta">Baldes de contenção em bom estado de conservação?</td><td class="opcao"><input type="radio" name="p71" value="S"></td><td class="opcao"><input type="radio" name="p71" value="N"></td><td class="opcao"><input type="radio" name="p71" value="NA"></td></tr>
+                <tr><td>3</td><td class="pergunta">Vasilhames dos produtos estão identificados corretamente (rótulo, placa, etiqueta, etc)?</td><td class="opcao"><input type="radio" name="p72" value="S"></td><td class="opcao"><input type="radio" name="p72" value="N"></td><td class="opcao"><input type="radio" name="p72" value="NA"></td></tr>
+                <tr><td>4</td><td class="pergunta">Os produtos químicos estão dentro da área de contenção?</td><td class="opcao"><input type="radio" name="p73" value="S"></td><td class="opcao"><input type="radio" name="p73" value="N"></td><td class="opcao"><input type="radio" name="p73" value="NA"></td></tr>
+                <tr><td>5</td><td class="pergunta">Não há vazamentos?</td><td class="opcao"><input type="radio" name="p74" value="S"></td><td class="opcao"><input type="radio" name="p74" value="N"></td><td class="opcao"><input type="radio" name="p74" value="NA"></td></tr>
+                <tr><td>6</td><td class="pergunta">Possui Ficha de Manuseio?</td><td class="opcao"><input type="radio" name="p75" value="S"></td><td class="opcao"><input type="radio" name="p75" value="N"></td><td class="opcao"><input type="radio" name="p75" value="NA"></td></tr>
+                <tr><td>7</td><td class="pergunta">Outros.</td><td class="opcao"><input type="radio" name="p76" value="S"></td><td class="opcao"><input type="radio" name="p76" value="N"></td><td class="opcao"><input type="radio" name="p76" value="NA"></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 14. Emergência -->
+    <div class="secao">
+        <div class="secao-titulo">14. Emergência</div>
+        <table>
+            <thead>
+                <tr><th>#</th><th>Pergunta</th><th>S</th><th>N</th><th>N.A</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td class="pergunta">Equipamentos de emergência em boas condições?</td><td class="opcao"><input type="radio" name="p77" value="S"></td><td class="opcao"><input type="radio" name="p77" value="N"></td><td class="opcao"><input type="radio" name="p77" value="NA"></td></tr>
+                <tr><td>2</td><td class="pergunta">Caixas de hidrantes com todos equipamentos lacrados?</td><td class="opcao"><input type="radio" name="p78" value="S"></td><td class="opcao"><input type="radio" name="p78" value="N"></td><td class="opcao"><input type="radio" name="p78" value="NA"></td></tr>
+                <tr><td>3</td><td class="pergunta">Macas adequadas?</td><td class="opcao"><input type="radio" name="p79" value="S"></td><td class="opcao"><input type="radio" name="p79" value="N"></td><td class="opcao"><input type="radio" name="p79" value="NA"></td></tr>
+                <tr><td>4</td><td class="pergunta">Outros.</td><td class="opcao"><input type="radio" name="p80" value="S"></td><td class="opcao"><input type="radio" name="p80" value="N"></td><td class="opcao"><input type="radio" name="p80" value="NA"></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 15. Gestão SSMA -->
+    <div class="secao">
+        <div class="secao-titulo">15. Gestão SSMA</div>
+        <table>
+            <thead>
+                <tr><th>#</th><th>Pergunta</th><th>S</th><th>N</th><th>N.A</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td class="pergunta">Mapa de Risco visível?</td><td class="opcao"><input type="radio" name="p81" value="S"></td><td class="opcao"><input type="radio" name="p81" value="N"></td><td class="opcao"><input type="radio" name="p81" value="NA"></td></tr>
+                <tr><td>2</td><td class="pergunta">Área de armazenamento de produtos (etanol, óleo, etc) adequada?</td><td class="opcao"><input type="radio" name="p82" value="S"></td><td class="opcao"><input type="radio" name="p82" value="N"></td><td class="opcao"><input type="radio" name="p82" value="NA"></td></tr>
+                <tr><td>3</td><td class="pergunta">Não há desperdício de água?</td><td class="opcao"><input type="radio" name="p83" value="S"></td><td class="opcao"><input type="radio" name="p83" value="N"></td><td class="opcao"><input type="radio" name="p83" value="NA"></td></tr>
+                <tr><td>4</td><td class="pergunta">SSMA inspecionadas?</td><td class="opcao"><input type="radio" name="p84" value="S"></td><td class="opcao"><input type="radio" name="p84" value="N"></td><td class="opcao"><input type="radio" name="p84" value="NA"></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Botão de ação -->
+    <div class="botoes">
+        <button type="button" onclick="gerarPDF()">Gerar PDF</button>
+    </div>
+
+</form>
+
+</body>
+</html>
